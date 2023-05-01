@@ -1,7 +1,21 @@
-import React from "react";
-import { FaFacebook, FaTwitter, FaInstagramSquare, FaLinkedin } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagramSquare,
+  FaLinkedin,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [chefData, setChefData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/chefs")
+      .then((response) => response.json())
+      .then((data) => setChefData(data));
+  }, []);
+  //   console.log(chefData);
   return (
     <div>
       <div
@@ -57,16 +71,60 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className=" bg-slate-100 py-14">
+      <div className="bg-slate-100 py-16">
+        <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+          <h2 className="text-center font-bold text-4xl py-2">Our Chefs</h2>
+          <p className="text-center font-medium py-2">
+            Korean cuisine also features a wide variety of soups, stews, and
+            noodle dishes, often made with a range of meats and vegetables.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-7 py-10">
+            {chefData[0]?.chefs?.map((chef) => (
+              <div className="card w-full bg-base-100 shadow-xl" key={chef.id}>
+                <figure className="px-10 pt-10">
+                  <img
+                    src={chef.chef_picture}
+                    alt="Shoes"
+                    className="rounded-xl"
+                    width={600}
+                  />
+                </figure>
+                <div className="card-body px-10">
+                  <h2 className="card-title font-bold">{chef.name}</h2>
+                  <div className="flex-col justify-between items-center gap-10 font-medium">
+                    <p>Experience: {chef.experience}</p>
+                    <p>Recipes: {chef.recipe_number}</p>
+                    <p>Likes: {chef.likes}</p>
+                  </div>
+                  <div className="card-actions">
+                    <Link>
+                      <button className="btn btn-warning hover:btn">View Recipe</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className=" py-14">
         <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center">
             <div>
-                <h1 className="font-bold text-5xl">Contact Us</h1>
-                <p className="font-medium py-3">One of the most famous Korean dishes is kimchi, a spicy and tangy fermented vegetable dish that is often served as a side dish or used as a condiment.</p>
-                <p className="font-medium py-3">Korean cuisine also features a wide variety of soups, stews, and noodle dishes, often made with a range of meats and vegetables.</p>
-                <div className="flex items-center gap-6 py-3">
-                    <FaFacebook size={30}/> <FaTwitter size={30}/> <FaInstagramSquare size={30}/> <FaLinkedin size={30}/>
-                </div>
+              <h1 className="font-bold text-5xl">Contact Us</h1>
+              <p className="font-medium py-3">
+                One of the most famous Korean dishes is kimchi, a spicy and
+                tangy fermented vegetable dish that is often served as a side
+                dish or used as a condiment.
+              </p>
+              <p className="font-medium py-3">
+                Korean cuisine also features a wide variety of soups, stews, and
+                noodle dishes, often made with a range of meats and vegetables.
+              </p>
+              <div className="flex items-center gap-6 py-3">
+                <FaFacebook size={30} /> <FaTwitter size={30} />{" "}
+                <FaInstagramSquare size={30} /> <FaLinkedin size={30} />
+              </div>
             </div>
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
               <div className="card-body">
