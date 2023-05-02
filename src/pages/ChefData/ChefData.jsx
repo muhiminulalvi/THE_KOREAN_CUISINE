@@ -27,7 +27,7 @@ const ChefData = () => {
 
   setTimeout(() => {
     setIsLoading(false);
-  }, 100);
+  }, 1000);
 
   return (
     <div className=" bg-stone-50">

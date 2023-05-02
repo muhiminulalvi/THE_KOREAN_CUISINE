@@ -4,7 +4,13 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+    .then()
+    .catch()
+  }
 
   return (
     <div className="bg-stone-100">
@@ -62,13 +68,13 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex items-center justify-end gap-4">
-              <label className="tooltip" data-tip={user?.displayName}>
+              <label className="tooltip" data-tip={`Hello! ${user?.displayName}`}>
                 <div className="w-10 rounded-full">
                   <FaUserCircle size={40}/>
                   
                 </div>
               </label>
-              <button className="btn">Logout</button>
+              <button className="btn" onClick={handleLogOut}>Logout</button>
             </div>
           ) : (
             <Link to="/login">

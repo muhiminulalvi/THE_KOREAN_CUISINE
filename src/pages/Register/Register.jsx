@@ -1,12 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photoURL =form.photo.value;
+    const password = form.password.value;
+
+    console.log(name, email, photoURL, password);
+
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+      setError("password not valid need 8 char ");
+      return;
+    }
+
+    createUser(email, password)
+    .then(result => {
+      const createdUser = result.user;
+      console.log(createdUser);
+      navigate('/')
+    })
+    .catch(err => console.log(err))
+  };
+
   return (
     <div className="px-4 py-14 sm:max-w-xl md:max-w-full md:px-24 lg:px-8">
       <div className="card mx-auto w-full max-w-sm shadow-2xl bg-base-100">
-        <form className="card-body">
+        <form className="card-body" onSubmit={handleSubmit}>
           <h2 className="font-bold text-3xl text-center py-3">
             Please Register!
           </h2>
@@ -59,21 +87,23 @@ const Register = () => {
             />
           </div>
           <div className="form-control mt-6">
-            <input
+            <button
               type="submit"
-              value="Register"
               className="btn btn-warning hover:btn font-bold"
-            />
+            >
+              Register
+            </button>
           </div>
           <label className="label">
             <Link
               to="/login"
               className="label-text-alt link link-hover font-medium"
             >
-              Already have an account? {" "}
+              Already have an account?{" "}
               <span className="text-warning">Login</span>
             </Link>
           </label>
+          <p className="text-danger">{error}</p>
         </form>
       </div>
     </div>
