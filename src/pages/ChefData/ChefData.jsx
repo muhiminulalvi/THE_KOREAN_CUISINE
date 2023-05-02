@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-import { FaRegThumbsUp } from 'react-icons/fa';
+import { FaRegThumbsUp, FaRegHeart } from "react-icons/fa";
 
 const ChefData = () => {
   const { id } = useParams();
@@ -15,12 +15,57 @@ const ChefData = () => {
           <div className="mb-3 font-bold px-4">
             <h2 className="text-5xl text-warning py-3">{chef.name}</h2>
             <p className="py-4">{chef.bio}</p>
-            <p className="flex items-center py-2"><FaRegThumbsUp size={20}/>: <span className="text-xl">{chef.likes}</span></p>
+            <p className="flex items-center py-2">
+              <FaRegThumbsUp size={20} />:{" "}
+              <span className="text-xl">{chef.likes}</span>
+            </p>
             <p className="py-2">Number of Recipes: {chef.recipe_number}</p>
             <p className=" py-2">Experiences: {chef.experience}</p>
           </div>
           <div>
-            <img src={chef.chef_picture} alt="" className="rounded w-full p-4"/>
+            <img
+              src={chef.chef_picture}
+              alt=""
+              className="rounded w-full p-4"
+            />
+          </div>
+        </div>
+        <div className="pt-16">
+          <div className="text-center px-7">
+            <h2 className="font-bold text-warning text-5xl py-4">
+              Popular Recipes
+            </h2>
+            <p className="font-medium">
+              Korean cuisine is known for its bold and complex flavors, with
+              dishes often featuring{" "}
+            </p>
+            <p className="font-medium">
+              a combination of spicy, sour, sweet, and salty tastes.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 justify-between items-center gap-4 py-10">
+            {chef.recipes.map((recipe) => (
+              <div className="card w-full shadow-xl" key={recipe.recipe_id}>
+                <figure>
+                  <img
+                    src={recipe.photo}
+                    alt="Shoes"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title font-bold text-4xl py-3">{recipe.recipe_name}</h2>
+                  <p className="font-medium py-3">Ingredients: {recipe.ingredients}</p>
+                  <hr />
+                  <div className="flex items-center justify-between font-bold pt-3">
+                    <div className="flex-col gap-3">
+                        <p>Cooking Method: {recipe.cooking_method}</p>
+                        <p>Ratings: {recipe.rating}</p>
+                    </div>
+                    <div><button className="text-warning"><FaRegHeart size={30}/></button></div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
