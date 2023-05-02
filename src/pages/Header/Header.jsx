@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="bg-stone-100">
-      <div className="navbar px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+      <div className="navbar px-4 py-7 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -28,17 +32,19 @@ const Header = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li className="font-bold text-2xl">
-              <Link to="/">Home</Link>
+                <Link to="/">Home</Link>
               </li>
               <li tabIndex={0} className="font-bold text-2xl">
-              <Link to="/blog">About</Link>
+                <Link to="/blog">About</Link>
               </li>
               <li className="font-bold text-2xl">
-              <Link to="/blog">Blog</Link>
+                <Link to="/blog">Blog</Link>
               </li>
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost normal-case text-3xl font-bold">M's Cuisine</Link>
+          <Link to="/" className="btn btn-ghost normal-case text-3xl font-bold">
+            M's Cuisine
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -46,15 +52,31 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li className="font-bold text-2xl">
-            <Link to="/blog">About</Link>
+              <Link to="/blog">About</Link>
             </li>
             <li className="font-bold text-2xl">
-            <Link to="/blog">Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to='/login'><button className="btn btn-warning text-xl font-bold">Login</button></Link>
+          {user ? (
+            <div className="flex items-center justify-end gap-4">
+              <label className="tooltip" data-tip={user?.displayName}>
+                <div className="w-10 rounded-full">
+                  <FaUserCircle size={40}/>
+                  
+                </div>
+              </label>
+              <button className="btn">Logout</button>
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-warning text-xl font-bold">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

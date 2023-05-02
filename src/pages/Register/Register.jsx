@@ -4,7 +4,7 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const Register = () => {
   return (
-    <div className="px-4 py-14 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div className="px-4 py-14 sm:max-w-xl md:max-w-full md:px-24 lg:px-8">
       <div className="card mx-auto w-full max-w-sm shadow-2xl bg-base-100">
         <form className="card-body">
           <h2 className="font-bold text-3xl text-center py-3">
@@ -51,8 +51,8 @@ const Register = () => {
               <span className="label-text">Photo URL</span>
             </label>
             <input
-              name="url"
-              type="url"
+              name="photo"
+              type="text"
               placeholder="photo url"
               className="input input-bordered"
               required
