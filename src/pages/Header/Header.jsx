@@ -68,7 +68,7 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex items-center justify-end gap-4">
-              <label className="tooltip" data-tip={`Hello! ${user?.displayName}`}>
+              <label className="tooltip" data-tip={`Hello! ${user.displayName? user.displayName : ""}`}>
                 <div className="w-10 rounded-full">
                   <FaUserCircle size={40}/>
                   
