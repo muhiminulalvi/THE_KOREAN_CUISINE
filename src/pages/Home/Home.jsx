@@ -97,7 +97,7 @@ const Home = () => {
                     <p>Likes: {chef.likes}</p>
                   </div>
                   <div className="card-actions">
-                    <Link>
+                    <Link to={`/chefs/${chef?.id}`}>
                       <button className="btn btn-warning hover:btn">View Recipe</button>
                     </Link>
                   </div>
