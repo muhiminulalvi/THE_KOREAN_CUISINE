@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { FaRegThumbsUp, FaRegHeart } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ChefData = () => {
+  
   const { id } = useParams();
-  // console.log(id);
   const chef = useLoaderData();
-  console.log(chef);
+  const [recipeStates, setRecipeStates] = useState(
+    chef.recipes.map((recipe) => ({ id: recipe.recipe_id, isFavorite: false }))
+  );
+
+  const handleAddToFavorite = (recipeId) => {
+    const updatedRecipeStates = recipeStates.map(recipeState => {
+      if (recipeState.id === recipeId) {
+        return { ...recipeState, isFavorite: true };
+      }
+      return recipeState;
+    });
+    setRecipeStates(updatedRecipeStates);
+    toast.success("Recipe added to favorites");
+  };
+
   return (
     <div className=" bg-stone-50">
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -44,24 +60,34 @@ const ChefData = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 justify-between items-center gap-4 py-10">
-            {chef.recipes.map((recipe) => (
+            {chef.recipes.map((recipe, index) => (
               <div className="card w-full shadow-xl" key={recipe.recipe_id}>
                 <figure>
-                  <img
-                    src={recipe.photo}
-                    alt="Shoes"
-                  />
+                  <img src={recipe.photo} alt="Shoes" />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title font-bold text-4xl py-3">{recipe.recipe_name}</h2>
-                  <p className="font-medium py-3">Ingredients: {recipe.ingredients}</p>
+                  <h2 className="card-title font-bold text-4xl py-3">
+                    {recipe.recipe_name}
+                  </h2>
+                  <p className="font-medium py-3">
+                    Ingredients: {recipe.ingredients}
+                  </p>
                   <hr />
                   <div className="flex items-center justify-between font-bold pt-3">
                     <div className="flex-col gap-3">
-                        <p>Cooking Method: {recipe.cooking_method}</p>
-                        <p>Ratings: {recipe.rating}</p>
+                      <p>Cooking Method: {recipe.cooking_method}</p>
+                      <p>Ratings: {recipe.rating}</p>
                     </div>
-                    <div><button className="text-warning"><FaRegHeart size={30}/></button></div>
+                    <div>
+                      <button
+                        className="btn"
+                        onClick={() => handleAddToFavorite(recipe.recipe_id)}
+                        disabled={recipeStates[index].isFavorite}
+                      >
+                        {recipeStates[index].isFavorite ? 'Added to favorites' : 'Add to favorites'}
+                      </button>
+                      <ToastContainer />
+                    </div>
                   </div>
                 </div>
               </div>
