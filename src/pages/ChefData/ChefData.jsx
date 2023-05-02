@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { FaRegThumbsUp, FaRegHeart } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BounceLoader  from "react-spinners/BounceLoader";
 
 const ChefData = () => {
   
@@ -11,6 +12,7 @@ const ChefData = () => {
   const [recipeStates, setRecipeStates] = useState(
     chef.recipes.map((recipe) => ({ id: recipe.recipe_id, isFavorite: false }))
   );
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleAddToFavorite = (recipeId) => {
     const updatedRecipeStates = recipeStates.map(recipeState => {
@@ -23,9 +25,20 @@ const ChefData = () => {
     toast.success("Recipe added to favorites");
   };
 
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 3000);
+
+
   return (
     <div className=" bg-stone-50">
-      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+      {
+        isLoading ? (
+            <div className="flex justify-center items-center h-screen">
+          <BounceLoader color="#f59e0b" size={150} />
+        </div>
+        ) : (
+            <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <h2 className="text-5xl font-bold text-center pb-16">Meet The Chef</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-4 px-5">
           <div className="mb-3 font-bold px-4">
@@ -80,11 +93,11 @@ const ChefData = () => {
                     </div>
                     <div>
                       <button
-                        className="btn"
+                        className="btn btn-warning"
                         onClick={() => handleAddToFavorite(recipe.recipe_id)}
                         disabled={recipeStates[index].isFavorite}
                       >
-                        {recipeStates[index].isFavorite ? 'Added to favorites' : 'Add to favorites'}
+                        {recipeStates[index].isFavorite ? <FaRegHeart size={20}/> : <FaRegHeart size={20}/>}
                       </button>
                       <ToastContainer />
                     </div>
@@ -95,6 +108,8 @@ const ChefData = () => {
           </div>
         </div>
       </div>
+        )
+      }
     </div>
   );
 };
