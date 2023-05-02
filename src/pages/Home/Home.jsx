@@ -6,6 +6,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import LazyLoad from 'react-lazyload';
 
 const Home = () => {
   const [chefData, setChefData] = useState([]);
@@ -82,12 +83,14 @@ const Home = () => {
             {chefData[0]?.chefs?.map((chef) => (
               <div className="card w-full bg-base-100 shadow-xl" key={chef.id}>
                 <figure className="px-10 pt-10">
+                  <LazyLoad height={400}>
                   <img
                     src={chef.chef_picture}
                     alt="Shoes"
                     className="rounded-xl"
                     width={600}
                   />
+                  </LazyLoad>
                 </figure>
                 <div className="card-body px-10">
                   <h2 className="card-title font-bold">{chef.name}</h2>
