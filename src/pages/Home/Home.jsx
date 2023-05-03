@@ -112,7 +112,7 @@ const Home = () => {
       </div>
       <div className=" py-14">
         <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-5">
             <div>
               <h1 className="font-bold text-5xl">Contact Us</h1>
               <p className="font-medium py-3">
@@ -129,8 +129,8 @@ const Home = () => {
                 <FaInstagramSquare size={30} /> <FaLinkedin size={30} />
               </div>
             </div>
-            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-              <div className="card-body">
+            <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">
+              <div className="card-body text-center">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
