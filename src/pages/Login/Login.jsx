@@ -11,7 +11,7 @@ const Login = () => {
   const location = useLocation()
   const googleProvider = new GoogleAuthProvider()
   const githubProvider = new GithubAuthProvider()
-  console.log(location);
+  // console.log(location);
   const from = location.state?.from?.pathname || "/"
 
   const handleLoginUser = (event)=> {
@@ -27,6 +27,7 @@ const Login = () => {
       const loggedInUser = result.user;
       console.log(loggedInUser);
       navigate(from, {replace: true})
+      setError("")
     })
     .catch(err => {
       console.log(err.message);

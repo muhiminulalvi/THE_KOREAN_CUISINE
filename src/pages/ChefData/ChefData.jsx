@@ -77,9 +77,9 @@ const ChefData = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 justify-between items-center gap-4 py-10">
               {chef.recipes.map((recipe, index) => (
-                <div className="card w-full shadow-xl" key={recipe.recipe_id}>
+                <div className="card w-full shadow-xl h-full" key={recipe.recipe_id}>
                   <figure>
-                    <img src={recipe.photo} alt="Shoes" />
+                    <img src={recipe.photo} alt="Shoes" className=" h-80"/>
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title font-bold text-4xl py-3">

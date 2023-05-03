@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const [error, setError] = useState("")
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/"
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,18 +19,26 @@ const Register = () => {
 
     console.log(name, email, photoURL, password);
 
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password)) {
       setError("password not valid need 8 char ");
       return;
+    } else {
+      setError("")
     }
 
     createUser(email, password)
     .then(result => {
       const createdUser = result.user;
       console.log(createdUser);
-      navigate('/')
+      updateUserProfile(name, photoURL)
+      .then(() => {
+        navigate(from, {replace: true})
+      })
+      .catch((err) => console.log(err))
+      
     })
     .catch(err => console.log(err))
+
   };
 
   return (

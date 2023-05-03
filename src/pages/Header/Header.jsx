@@ -49,7 +49,7 @@ const Header = () => {
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-3xl font-bold">
-            M's Cuisine
+            The Korean Cuisine
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -68,10 +68,14 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex items-center justify-end gap-4">
-              <label className="tooltip" data-tip={`Hello! ${user.displayName? user.displayName : ""}`}>
+              <label className="tooltip" data-tip={`Hello! ${user.displayName? user.displayName: ""}`}>
                 <div className="w-10 rounded-full">
-                  <FaUserCircle size={40}/>
-                  
+                  {/* <FaUserCircle size={40}/> */}
+                  {
+                    user.photoURL? (
+                      <img src={user?.photoURL} alt="" className="rounded-full" />
+                    ) : (<FaUserCircle size={40}/>)
+                  }
                 </div>
               </label>
               <button className="btn" onClick={handleLogOut}>Logout</button>

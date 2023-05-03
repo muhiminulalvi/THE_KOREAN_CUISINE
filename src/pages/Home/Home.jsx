@@ -28,7 +28,7 @@ const Home = () => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-lg">
-            <h1 className="mb-5 text-5xl font-bold">M's Cuisine</h1>
+            <h1 className="mb-5 text-5xl font-bold">The Korean Cuisine</h1>
             <p className="mb-5">
               Korean cuisine is characterized by bold and spicy flavors,
               fermentation, and an emphasis on vegetables and rice. Korean
@@ -83,7 +83,7 @@ const Home = () => {
             {chefData[0]?.chefs?.map((chef) => (
               <div className="card w-full bg-base-100 shadow-xl" key={chef.id}>
                 <figure className="px-10 pt-10">
-                  <LazyLoad height={400}>
+                  <LazyLoad height={400} threshold={0}>
                   <img
                     src={chef.chef_picture}
                     alt="Shoes"

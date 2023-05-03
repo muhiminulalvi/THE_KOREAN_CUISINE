@@ -5,9 +5,9 @@ const Footer = () => {
     <div className="bg-stone-100">
       <footer className="footer p-10 bg-base-200 text-base-content px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div>
-          <h1 className="text-4xl font-bold">M's Cuisine</h1>
+          <h1 className="text-4xl font-bold">The Korean Cuisine</h1>
           <p className="font-medium">
-            M's Cuisine Ltd.
+            The Korean Cuisine Ltd.
             <br />
             Providing reliable recipe since 2002
           </p>
