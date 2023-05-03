@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-import { FaRegThumbsUp, FaRegHeart } from "react-icons/fa";
+import { FaRegThumbsUp, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BounceLoader from "react-spinners/BounceLoader";
 import LazyLoad from "react-lazyload";
+import Rating from "react-rating";
 
 const ChefData = () => {
   const { id } = useParams();
@@ -89,9 +90,17 @@ const ChefData = () => {
                     </p>
                     <hr />
                     <div className="flex items-center justify-between font-bold pt-3">
-                      <div className="flex-col gap-3">
+                      <div className="flex-col gap-4">
                         <p>Cooking Method: {recipe.cooking_method}</p>
-                        <p>Ratings: {recipe.rating}</p>
+                        <div className="flex items-center gap-1 py-2">
+                          <Rating
+                           placeholderRating={recipe.rating}
+                           emptySymbol={<FaRegStar />}
+                           placeholderSymbol={<FaStar />}
+                           fullSymbol={<FaStar />}
+                           readonly></Rating>
+                          <p>{recipe.rating}</p>
+                        </div>
                       </div>
                       <div>
                         <button
