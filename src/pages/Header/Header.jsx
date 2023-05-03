@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -38,13 +38,16 @@ const Header = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li className="font-bold text-2xl">
-                <Link to="/">Home</Link>
+                <NavLink to="/">Home</NavLink>
               </li>
               <li tabIndex={0} className="font-bold text-2xl">
-                <Link to="/blog">About</Link>
+                <NavLink to="/">About</NavLink>
               </li>
               <li className="font-bold text-2xl">
-                <Link to="/blog">Blog</Link>
+                <NavLink to="/">FAQ</NavLink>
+              </li>
+              <li className="font-bold text-2xl">
+                <NavLink to="/blog">Blog</NavLink>
               </li>
             </ul>
           </div>
@@ -58,7 +61,10 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li className="font-bold text-2xl">
-              <Link to="/blog">About</Link>
+              <Link to="/">About</Link>
+            </li>
+            <li className="font-bold text-2xl">
+              <Link to="/">FAQ</Link>
             </li>
             <li className="font-bold text-2xl">
               <Link to="/blog">Blog</Link>
