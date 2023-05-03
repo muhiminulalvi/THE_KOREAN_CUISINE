@@ -27,4 +27,4 @@
 [https://b7a10-chef-recipe-hunter-server-side-muhiminulalv-muhiminulalvi.vercel.app/chefs](https://b7a10-chef-recipe-hunter-server-side-muhiminulalv-muhiminulalvi.vercel.app/chefs)
 
 ## API Link (Each Chef's recipe Data)
-[https://b7a10-chef-recipe-hunter-server-side-muhiminulalv-muhiminulalvi.vercel.app/chefs/1](https://b7a10-chef-recipe-hunter-server-side-muhiminulalv-muhiminulalvi.vercel.app/chefs/1)
+[https://b7a10-chef-recipe-hunter-server-side-muhiminulalv-muhiminulalvi.vercel.app/chefs/{id}](https://b7a10-chef-recipe-hunter-server-side-muhiminulalv-muhiminulalvi.vercel.app/chefs/1)
