@@ -14,9 +14,9 @@
 * React LazyLoads
 * React Ratings
 * React Toastify
-10. Tailwind and DaisyUI
-11. Vite
-12. Header and Footer, etc.
+* Tailwind and DaisyUI
+* Vite
+* Header and Footer, etc.
 
 ## Live Website Link:
 
