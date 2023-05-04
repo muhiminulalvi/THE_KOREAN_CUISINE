@@ -5,15 +5,15 @@
 ### Assignment 10
 
 #### Features:
-1. React Router
-2. Firebase Authentication
-3. Google and GitHub Authentication
-4. Email / Password Authentication
-5. Data Load Through Express Server deployed in Vercel
-6. React Icons
-7. React LazyLoads
-8. React Ratings
-9. React Toastify
+* React Router
+* Firebase Authentication
+* Google and GitHub Authentication
+* Email / Password Authentication
+* Data Load Through Express Server deployed in Vercel
+* React Icons
+* React LazyLoads
+* React Ratings
+* React Toastify
 10. Tailwind and DaisyUI
 11. Vite
 12. Header and Footer, etc.
