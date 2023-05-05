@@ -58,16 +58,16 @@ const Header = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li className="font-bold text-2xl">
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li className="font-bold text-2xl">
-              <Link to="/">About</Link>
+              <NavLink to="/">About</NavLink>
             </li>
             <li className="font-bold text-2xl">
-              <Link to="/">FAQ</Link>
+              <NavLink to="/">FAQ</NavLink>
             </li>
             <li className="font-bold text-2xl">
-              <Link to="/blog">Blog</Link>
+              <NavLink to="/blog">Blog</NavLink>
             </li>
           </ul>
         </div>
